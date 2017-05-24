@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://cdn.bootcss.com/vue/2.3.3/vue.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!--<script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+    <title>Title</title>
+
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        #main{
+            font-size:12px;
+        }
+        #main .head-content{
+            background:#1a1a1a;
+            height:3.125rem;
+            color:#fff;
+        }
+
+        #main .end-content{
+            background:#1a1a1a;
+            height:3.125rem;
+            color:#fff;
+            /*position:fixed;*/
+            width:100%;
+            /*bottom:0rem;*/
+        }
+
+        #main .body-content{
+            /*flex-wrap: wrap;*/
+            /*display: flex;*/
+            padding:1rem;
+        }
+        .bg-warn{
+            background-color:#ec971f;
+        }
+        .bg-error{
+            background-color:#c9302c;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <!-- start head -->
+    <div class="head-content">
+
+        <a href="./index.html"><span>Hawkeye</span>- 项目质量大盘</a>
+    </div>
+    <!-- end head -->
+
+    <!-- start content -->
+    <div class="body-content">
+        <div class="title" id="title-content">
+           <h3>{{title}}</h3>
+        </div>
+        <table class="table table-hover table-striped" id="app">
+            <thead>
+                <tr>
+                    <th>file</th>
+                    <th>errorCount</th>
+                </tr>
+            </thead>
+           <tr v-for="item in data" >
+               <td @click="infoFile(item)">{{item.filePath}}</td>
+               <td v-bind:class="item.errorCount>0?(item.errorCount>100?'bg-error':'bg-warn'):'' " >{{item.errorCount}}</td>
+           </tr>
+        </table>
+    </div>
+    <!-- end content -->
+
+    <!-- start end-content -->
+    <div class="end-content">
+        这里是footer
+    </div>
+    <!-- end  end-content -->
+
+    <script src="js/project.js"></script>
+</div>
+</body>
+</html>
