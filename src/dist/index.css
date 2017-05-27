@@ -1,0 +1,75 @@
+#main {
+  font: 14px;
+}
+#main #canvasContent {
+  height: 31.25rem;
+  width: 100%;
+  position: relative;
+}
+#main #canvasContent canvas {
+  background: #1a1a1a;
+}
+#main .head-content {
+  color: #fff;
+}
+#main .head-content .title-content {
+  font-size: 2rem;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 8.75rem;
+}
+#main .head-content .title-content .sub-title {
+  padding-top: 0.6rem;
+  font-size: 1rem;
+  color: #a9a9a9;
+}
+#main .head-content .button-content {
+  padding-top: 1.87rem;
+}
+#main .head-content .button-content .enter {
+  font-size: 1.2rem;
+  display: inline-block;
+  background: #296d7e;
+  padding: 5px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  -webkit-animation-name: breathingLight;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+}
+#main .menu-content {
+  display: flex;
+  flex-wrap: nowrap;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+}
+#main .menu-content .menu-item {
+  flex-wrap: nowrap;
+  flex: auto;
+  text-align: center;
+  padding: 0.5rem 0px;
+  -webkit-transition: all 0.5s ease-out;
+  background: #fff;
+  cursor: pointer;
+}
+#main .menu-content .menu-item:hover {
+  background: #e7e7e7;
+}
+@-webkit-keyframes 'breathingLight' {
+  from {
+    /*background-color: #f6fcfe;*/
+    /*border-radius:0px;*/
+    background-color: #296d7e;
+  }
+  50% {
+    /*background-color: #eee;*/
+    /*border-radius:30px;*/
+    background-color: #3fb2ca;
+  }
+  to {
+    /*background-color: #f6fcfe;*/
+    /*border-radius:0px;*/
+    background-color: #296d7e;
+  }
+}

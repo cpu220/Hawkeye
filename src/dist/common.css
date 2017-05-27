@@ -1,0 +1,243 @@
+/** 清除内外边距 **/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #eee;
+  font-family: '微软雅黑', 'Helvetica Neue', sans-serif, SimHei;
+  font-size: 14px;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+}
+/*start common*/
+.fn-hide {
+  display: none;
+}
+.fn-clear:after {
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.fn-left {
+  float: left;
+}
+.fn-right {
+  float: right;
+}
+.ft-left {
+  text-align: left;
+}
+.ft-right {
+  text-align: right;
+}
+.ft-baseline {
+  vertical-align: baseline;
+}
+.ft-bottom {
+  vertical-align: bottom;
+}
+.ft-top {
+  vertical-align: top;
+}
+.ft-12 {
+  font-size: 12px;
+}
+.ft-14 {
+  font-size: 14px;
+}
+.ft-16 {
+  font-size: 16px;
+}
+.ft-18 {
+  font-size: 18px;
+}
+.ft-20 {
+  font-size: 20px;
+}
+a {
+  color: #0ae;
+  cursor: pointer;
+  text-decoration: none;
+}
+.ft-error {
+  color: #f4333c;
+}
+.ft-money {
+  color: #ff8208;
+}
+.ft-weaken {
+  color: #a6a6a6;
+}
+.ft-green {
+  color: #00a980;
+}
+.ft-black {
+  color: #333333;
+}
+.ft-white {
+  color: #fff;
+}
+.ft-blue,
+.ft-link {
+  color: #00aaee;
+}
+.ft-bar {
+  color: #ccc;
+  padding: 0 7px 0 6px;
+}
+.ft-nowrap {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.ft-ellipsis {
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: normal;
+  word-wrap: normal;
+}
+.fn-pt5 {
+  padding-top: 5px;
+}
+.fn-pr5 {
+  padding-right: 5px;
+}
+.fn-pb5 {
+  padding-bottom: 5px;
+}
+.fn-pl5 {
+  padding-left: 5px;
+}
+.fn-pt10 {
+  padding-top: 10px;
+}
+.fn-pr10 {
+  padding-right: 10px;
+}
+.fn-pb10 {
+  padding-bottom: 10px;
+}
+.fn-pl10 {
+  padding-left: 10px;
+}
+.fn-pt15 {
+  padding-top: 15;
+}
+.fn-pr15 {
+  padding-right: 15px;
+}
+.fn-pb15 {
+  padding-bottom: 15px;
+}
+.fn-pl15 {
+  padding-left: 15px;
+}
+.btn {
+  display: inline-block;
+  height: 32px;
+  margin: 0;
+  padding: 0 24px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: 0;
+  background-image: none;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #1a1a1a;
+  text-align: center;
+  vertical-align: top;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+.btn:hover,
+.btn:active,
+.btn.btn-active {
+  background-color: #f8f8f8;
+  border-color: #d8d8d8;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+.btn.btn-blue:hover,
+.btn.btn-blue:active,
+.btn.btn-blue.btn-active {
+  background-color: #0091cb;
+  border-color: #0091cb;
+  color: #fff;
+}
+.btn.btn-table:hover,
+.btn.btn-table:active,
+.btn.btn-table.btn-active {
+  background-color: #fff;
+  border-color: #0ae;
+  color: #0ae;
+}
+.btn.btn-table:hover,
+.btn.btn-table:active,
+.btn.btn-table.btn-active {
+  background-color: #fff;
+  border-color: #0ae;
+  color: #0ae;
+}
+.btn-sm {
+  height: 24px;
+  padding: 0 20px;
+  font-size: 12px;
+  line-height: 22px;
+  border-radius: 2px;
+}
+.btn-lg {
+  height: 48px;
+  padding: 0 48px;
+  line-height: 48px;
+  font-size: 18px;
+  border-radius: 4px;
+}
+.btn-blue {
+  background-color: #0ae;
+  border-color: #0ae;
+  color: #fff;
+}
+.btn.btn-table {
+  background-color: #fff;
+  border-color: #0ae;
+  color: #0ae;
+}
+/*end common*/

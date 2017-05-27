@@ -16,6 +16,7 @@
     "cpwcom":"*",
     "getfiles":"*",
     "cfiles":"^1.0.3",
-    "gulp-connect":"*"
+    "gulp-connect":"*",
+    "gulp-less": "*"
   }
 }
