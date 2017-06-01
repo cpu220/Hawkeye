@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Title</title>
-    <script src="https://cdn.bootcss.com/vue/2.3.3/vue.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/vue/2.3.3/vue.min.js"></script>-->
     <script src="../src/echart/echarts.min.js"></script>
 
     <style>
@@ -44,11 +44,19 @@
             border:solid 1px #f00;
             flex-grow: 3;
         }
+        .sub-chart{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .flex-item{
+            flex: auto;
+        }
         .countChart{
             width:100%;
         }
         .simplyChart{
-            width:100%;
+            /*width:100%;*/
         }
     </style>
 
@@ -66,9 +74,15 @@
                 <div class="countChart">
                     <div id="count" style="width: 600px;height:500px;margin: auto;"></div>
                 </div>
-                <div class="simplyChart">
-                    <div id="simply" style="width: 600px;height:500px;margin: auto;"></div>
+                <div class="sub-chart">
+                    <div class="simplyChart flex-item">
+                        <div id="simply" style="width: 600px;height:500px;margin: auto;"></div>
+                    </div>
+                    <div class="lineChart flex-item">
+                        <div id="line" style="width: 600px;height:500px;margin: auto;"></div>
+                    </div>
                 </div>
+
             </div>
         <!-- end content -->
 

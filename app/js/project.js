@@ -5,14 +5,27 @@ class page {
 
   init() {
     this.state = {
-      allJSON: '../result/all.json'
+      allJSON: `../result/${this.getDate(new Date()).d}-all.json`
     };
 
     const A = this._getRequest();
     console.log(`this page is ${A.name}'s Data`);
     this.initTable(A.name);
   }
-
+  getDate(date){
+    const arr = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
+    const D = date.getDate(),
+      M = date.getMonth() + 1,
+      Y = date.getFullYear(),
+      h = date.getHours(),
+      m = date.getMinutes(),
+      s = date.getSeconds();
+    return {
+      d:`${Y}-${arr[M] || M}-${arr[D] || D}`,
+      dt:`${Y}-${arr[M] || M}-${arr[D] || D} ${arr[h] || h}:${arr[m] || m}:${arr[s] || s}`,
+      t:`${arr[h] || h}:${arr[m] || m}:${arr[s] || s}`
+    };
+  }
   _getRequest() {
     var url = location.search; //获取url中"?"符后的字串
     var theRequest = new Object();

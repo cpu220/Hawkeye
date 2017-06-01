@@ -17,6 +17,7 @@
     "getfiles":"*",
     "cfiles":"^1.0.3",
     "gulp-connect":"*",
+    "gulp-shell": "*",
     "gulp-less": "*"
   }
 }

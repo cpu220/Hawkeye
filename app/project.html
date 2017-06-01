@@ -39,10 +39,13 @@
             padding:1rem;
         }
         .bg-warn{
-            background-color:#ec971f;
+            background-color:#fbb148;
+            color:#fff;
         }
         .bg-error{
-            background-color:#c9302c;
+            background-color:#ea4541;
+            color:#fff;
+
         }
     </style>
 </head>
@@ -69,7 +72,7 @@
             </thead>
            <tr v-for="item in data" >
                <td @click="infoFile(item)">{{item.filePath}}</td>
-               <td v-bind:class="item.errorCount>0?(item.errorCount>100?'bg-error':'bg-warn'):'' " >{{item.errorCount}}</td>
+               <td v-bind:class="item.errorCount>10?(item.errorCount>100?'bg-error':'bg-warn'):'' " >{{item.errorCount}}</td>
            </tr>
         </table>
     </div>

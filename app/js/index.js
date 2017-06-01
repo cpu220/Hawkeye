@@ -11,12 +11,28 @@ class page {
     this.state={
       chart:{
         count:echarts.init(document.getElementById('count')),
-        simply:echarts.init(document.getElementById('simply'))
+        simply:echarts.init(document.getElementById('simply')),
+        line:echarts.init(document.getElementById('line'))
       },
       request:{
-        allJSON:'../result/all.json'
+        dateJSON:`../result/${this.getDate(new Date()).d}-all.json`,
+        allJSON:`../result/all.json`
       }
     }
+  }
+  getDate(date){
+    const arr = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
+    const D = date.getDate(),
+      M = date.getMonth() + 1,
+      Y = date.getFullYear(),
+      h = date.getHours(),
+      m = date.getMinutes(),
+      s = date.getSeconds();
+    return {
+      d:`${Y}-${arr[M] || M}-${arr[D] || D}`,
+      dt:`${Y}-${arr[M] || M}-${arr[D] || D} ${arr[h] || h}:${arr[m] || m}:${arr[s] || s}`,
+      t:`${arr[h] || h}:${arr[m] || m}:${arr[s] || s}`
+    };
   }
   getJSON(url,callback){
     fetch(url,{
@@ -55,20 +71,79 @@ class page {
     }
     callback(result);
   }
+  formatAllData(json,callback){
+    var _this=this;
+    var result={
+      xAxis:[],
+      series:[],
+      legend:[]
+    };
+    for(var x =0;x<json.length;x++){
+      result.xAxis.push(json[x][0].date);
+      for(var y=0;y<json[x].length;y++){
+        // 判断当前项目是否已添加进result，如果没有则按格式添加
+        const judge = _this.hasObj(result.series,json[x][y]);
+        if(judge.status){
+          // 说明类目已录入
+          result.series[judge.index].data.push(json[x][y].errorCount);
+        }else{
+          // 类目未录入
+          result.legend.push(json[x][y].name);
+          result.series.push({
+            name:json[x][y].name,
+            type:'line',
+            data:[json[x][y].errorCount],
+            markPoint: {
+              data: [
+                {type: 'max', name: '最大值'},
+                {type: 'min', name: '最小值'}
+              ]
+            },markLine: {
+              data: [
+                {type: 'average', name: '平均值'}
+              ]
+            }
+          });
+        }
+
+      }
+    }
+    callback(result);
+  }
+  hasObj(oldItem,newItem){
+    var status = false,index=0;
+    for(var x=0;x<oldItem.length;x++){
+      if(oldItem[x].name === newItem.name){
+        status = true;
+        index=x;
+      }
+    }
+    return {
+      status:status,
+      index:index
+    };
+  }
   init(){
     const _this=this;
+    const dateJSON = this.state.request.dateJSON;
     const allJSON = this.state.request.allJSON;
-    this.getJSON(allJSON,function(json){
+    this.getJSON(dateJSON,function(json){
       _this.formatData(json,function(result){
         _this.initChart(result);
       });
-
+    });
+    this.getJSON(allJSON,function(json){
+      _this.formatAllData(json,function(result){
+        _this.initLine(result);
+      });
     });
   }
 
   initChart(result){
     this.initAllChart(result);
     this.initEvery(result);
+
+    // this.initLine(result);
   }
   initAllChart (result){
     var option = {
@@ -117,7 +192,6 @@ class page {
     var option = {
       title: {
         text: '质量大盘',
-        // subtext: '数据来自网络'
       },
       tooltip: {
         trigger: 'axis',
@@ -156,6 +230,34 @@ class page {
       // 控制台打印数据的名称
       location.href=`project.html?name=${params.name}`;
     });
+  }
+  initLine(result){
+
+    const option = {
+      title: {
+        text: '各项目质量趋势'
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data:result.legend
+      },
+      xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: result.xAxis
+      },
+      yAxis: {
+        type: 'value'
+
+      },
+      series: result.series
+    };
+
+    const chart = this.state.chart.line;
+    chart.setOption(option);
+
   }
 }
 

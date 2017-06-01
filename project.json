@@ -1,7 +1,9 @@
 [{
   "name":"ant-awards",
+  "store":"git@gitlab.odc.com:test/ant-awards.git",
   "url":"store/ant-awards/app"
 },{
   "name":"apires",
+  "store":"git@gitlab.odc.com:test/apires.git",
   "url":"store/apires/htdocs/uisvr"
 }]
