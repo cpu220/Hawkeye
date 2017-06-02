@@ -6,4 +6,8 @@
   "name":"apires",
   "store":"git@gitlab.odc.com:test/apires.git",
   "url":"store/apires/htdocs/uisvr"
+},{
+  "name":"wechat-mall",
+  "store":"git@git.coding.net:q25865/wechat-mall.git",
+  "url":"store/wechat-mall/src/assets"
 }]

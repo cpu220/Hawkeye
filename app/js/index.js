@@ -159,7 +159,7 @@ class page {
       visualMap: {
         show: false,
         min: 0,
-        max: 50000,
+        max: 30000,
         inRange: {
           colorLightness: [1, 0]
         }

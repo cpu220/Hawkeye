@@ -1,5 +1,5 @@
 {
-  "name": "cr",
+  "name": "Hawkeye",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "*",
-    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-react": "*",
+    "eslint-plugin-vue":"*",
+    "eslint-config-elemefe":"*",
     "gulp-eslint":"*",
     "gulp": "*",
     "cpwcom":"*",
