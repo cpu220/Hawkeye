@@ -63,7 +63,7 @@ class page {
     for(var i=0;i<json.length;i++){
       result.AllChart.push({
         name:json[i].name,
-        value:json[i].errorCount
+        value: (json[i].errorCount/(json[i].codeLine/1000)).toFixed(2)
       });
       result.simply.data.push(json[i].name);
       result.simply.series.push(json[i].errorCount)
@@ -149,7 +149,7 @@ class page {
     var option = {
 
       title: {
-        text: '质量大盘',
+        text: '千行代码bug率总表',
         left: 'center',
         top: 20,
         textStyle: {
@@ -159,14 +159,14 @@ class page {
       visualMap: {
         show: false,
         min: 0,
-        max: 30000,
+        max: 3000,
         inRange: {
           colorLightness: [1, 0]
         }
       },
       tooltip: {
         trigger: 'item',
-        formatter: "{a} <br/>{b}: {c} ({d}%)"
+        formatter: "{b} <br/>{c} ({d}‰)"
       },
       legend: {
         orient: 'vertical',
@@ -235,7 +235,7 @@ class page {
 
     const option = {
       title: {
-        text: '各项目质量趋势'
+        text: '趋势表'
       },
       tooltip: {
         trigger: 'axis'

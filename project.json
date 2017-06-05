@@ -9,5 +9,10 @@
 },{
   "name":"wechat-mall",
   "store":"git@git.coding.net:q25865/wechat-mall.git",
-  "url":"store/wechat-mall/src/assets"
+  "url":"store/wechat-mall"
+},{
+
+  "name":"CNS",
+  "store":"git@git.coding.net:belial/CNS.git",
+  "url":"store/CNS"
 }]

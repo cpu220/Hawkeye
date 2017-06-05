@@ -16,12 +16,13 @@ const process = require('child_process');
 const getFile = require('getfiles');
 
 const cf = new cfiles();
-
+const fileType =['js', 'jsx','vue']
 let timer = null;
+const date = common.tools.formatDate(new Date());
+const time = date.split(' ')[0];
+const logurl = `log/${time}-log.text`;
 
-const time = common.tools.formatDate(new Date()).split(' ')[0];
-
-
+const period = 1000*60*60;
 
 
 const store={
@@ -31,13 +32,15 @@ const store={
     for (var i = 0; i < this.report.length; i++) {
       (function (index,report) {
         if (report[index].name === json.pname && json.errorCount >0) {
-          report[index].errorCount = report[index].errorCount + json.errorCount;
-
+          let codeLine = json.source.split('\n').length;
+          report[index].errorCount += json.errorCount;
+          report[index].codeLine  += codeLine;
           // console.log(`${json.pname}===${report[index].errorCount}`);
 
           report[index]['child'].push({
             name: json.pname,
             date: time,
+            codeLine:codeLine,
             // name2:report[index].name,
             filePath: json.filePath,
             errorCount: json.errorCount
@@ -53,6 +56,7 @@ const store={
     this.report.push({
       name: item.name,
       errorCount: 0,
+      codeLine:0,
       date: time,
       child: []
     });
@@ -79,7 +83,7 @@ class action {
       _this.doPull();
       var timer = setInterval(function(){
         _this.doPull();
-      },1000*30);
+      },period);
     });
   }
   doPull(){
@@ -89,15 +93,15 @@ class action {
 
     Promise.all(project.map(function(item,index){
       process.exec(`git clone ${item.store} "store/${item.name}"`, (error, stdout, stderr)=>{
-        console.log(`${item.name}结束clone`);
 
+        common.file.set(logurl,`${date}:${item.name}结束clone\n`);
         item.getfile =  new getFile();
 
         store.add(item,time);
 
         item.getfile.getResult({
           root: item.url,
-          suffix: ['js', 'jsx'],
+          suffix: fileType,
           callback: function (list) {
             _this.eslintList(list);
           }
@@ -137,11 +141,15 @@ class action {
   }
   createResult(json){
     store.set(json);
-
+    const allJSON=`result/all.json`;
     timer = setTimeout(function () {
       clearTimeout(timer);
 
-      console.log('=========eslint end==============');
+      common.file.set(logurl,`${date}:eslint 结束\n`);
+      common.file.set(logurl,`============================\n`);
+
+
+      // console.log('=========eslint end==============');
 
       cf.create(`result/${time}-all.json`, JSON.stringify(store.report));
       let pArr=[];
@@ -150,18 +158,22 @@ class action {
           date:time,
           name:store.report[i].name,
           errorCount:store.report[i].errorCount
-        })
+        });
       }
 
-      common.file.read(`result/all.json`,data=>{
-        let list = JSON.parse(data);
-        // 当前时间和最后一个匹配，则覆盖写入
-        if(list[list.length-1][0].date === pArr[0].date){
-          list.pop();
-        }
-        list.push(pArr);
-        common.file.reset('result/all.json',JSON.stringify(list),function(){});
-      });
+       common.file.read(allJSON).then(data=>{
+         let list = JSON.parse(data);
+         // 当前时间和最后一个匹配，则覆盖写入
+         if(list[list.length-1][0].date === pArr[0].date){
+           list.pop();
+         }
+         list.push(pArr);
+         common.file.reset(allJSON,JSON.stringify(list),function(){});
+       }).catch(err=>{
+         let list =[];
+         list.push(pArr);
+         cf.create(allJSON,JSON.stringify(list),function(){});
+       });
 
     }, 1000);
   }
@@ -175,3 +187,11 @@ class action {
 
 const A = new action();
 A.init();
+
+
+
+/*以下为工程测试代码*/
+gulp.task('less', function () {
+  gulp.src(['src/index/*.less']).pipe(less()).pipe(gulp.dest('src/dist'));
+
+});
