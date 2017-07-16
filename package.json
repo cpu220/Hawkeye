@@ -1,6 +1,6 @@
 {
   "name": "Hawkeye",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
     "eslint-plugin-react": "*",
     "eslint-plugin-vue":"*",
     "eslint-config-elemefe":"*",
+    "babel-eslint":"*",
+    "eslint-config-airbnb":"*",
+    "eslint-plugin-jsx-a11y":"*",
+    "eslint-plugin-import":"*",
     "gulp-eslint":"*",
     "gulp": "*",
     "cpwcom":"1.0.8",

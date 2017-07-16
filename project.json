@@ -1,5 +1,5 @@
 [{
-  "name":"wechat-mall",
-  "store":"git@git.coding.net:q25865/wechat-mall.git",
-  "url":"store/wechat-mall"
+  "store":"git@github.com:cpu220/cns-gulp.git"
+},{
+  "store":"git@github.com:cpu220/Hawkeye.git"
 }]

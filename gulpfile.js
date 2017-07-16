@@ -71,7 +71,7 @@ class action {
   init() {
     var _this = this;
     gulp.task('s', (req, res) => {
-      console.log(`welcome to use ${app.name}${app.version}`);
+      console.log(`welcome to use ${app.name}${app.version},please make sure you run 'gulp' before this server run up`);
       connect.server();
     });
 
@@ -80,17 +80,17 @@ class action {
     });
 
     gulp.task('default', function () {
-      _this.doPull();
-      var timer = setInterval(function () {
+      // _this.doPull();
+      // var timer = setInterval(function () {
         _this.doPull();
-      }, period);
+      // }, period);
     });
     gulp.task('delete', function () {
       fs.unlink('store', err => {
         if (err) {
           console.log(err);
         }
-        console.log('del succedd');
+        console.log('deleted');
       })
     });
   }
@@ -99,19 +99,30 @@ class action {
     store.clear(); // 清空report
     // const getfile = new getFile();// 重置getfile
 
+    // 遍历project.json
     Promise.all(project.map(function (item, index) {
       child_process.exec('rm -rf store', (error, stdout, stderr) => {
-        child_process.exec(`git clone ${item.store} "store/${item.name}"`, (error, stdout, stderr) => {
+        let name = item.store.split('/').pop().split('.')[0];
+        item.name=name;// 再命名
 
+        child_process.exec(`git clone ${item.store} "store/${name}"`, (error, stdout, stderr) => {
+          if(error){
+            console.log(stdout);
+            console.log(`${name} download error,maybe you have not right to clone this project,please to checkout out,this error will be end of this progress。 `);
+            return false;
+          }
+          console.log(`=== checkout out ${name} ===`);
           common.file.set(logurl, `${date}:${item.name}结束clone\n`);
           item.getfile = new getFile();
 
           store.add(item, time);
 
           item.getfile.getResult({
-            root: item.url,
+            root: `store/${name}`,
             suffix: fileType,
             callback: function (list) {
+              console.log(`${list} \n`);
+
               _this.eslintList(list);
             }
           });
@@ -160,7 +171,7 @@ class action {
       common.file.set(logurl, `============================\n`);
 
 
-      // console.log('=========eslint end==============');
+      console.log('=========eslint end==============');
 
       cf.create(`result/${time}-all.json`, JSON.stringify(store.report));
       let pArr = [];
