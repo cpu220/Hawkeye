@@ -9,5 +9,8 @@
   "touch",
   "slide",
   "react",
-  "qrcode"
+  "qrcode",
+  "video",
+  "audioplayer",
+  "bce-bos-uploader.bundle"
 ]

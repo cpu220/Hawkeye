@@ -20,12 +20,17 @@
 }
 ```
 
+### 白名单
+* whiteList.json
+* 如果工程里有第三方插件或较大的压缩文件想要规避eslint扫描，则需手动对白名单添加
+
 ### 启动
 ``` javascript
+gulp // 启动扫描
 gulp s // 启动服务器
-gulp // 启动定时扫描
+
 ```
-先执行 gulp // 会自动根据project.json来获取代码，然后eslint扫描
+先执行 gulp // 会自动根据project.json来获取代码，然后eslint扫描，待出现 `eslint end` 提示字样时，执行`gulp s`
 再执行gulp s // 只是起服务器，由于垃圾回收问题导致的内存异常，会在后续版本优化
 
 
@@ -50,5 +55,9 @@ gulp // 启动定时扫描
 * 重新格式化project.json，后续不需要写那么，暂时只需要一个store地址即可
 * 修复了因project.json，带来的字段错误问题
 * 修复了因权限而中断任务的问题
+
+### 2017-08-01
+* 确定了package.json 里插件的版本
+* 添加了部分白名单
 
 

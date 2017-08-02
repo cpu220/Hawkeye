@@ -1,6 +1,6 @@
 {
   "name": "Hawkeye",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,21 +9,22 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "*",
-    "eslint-plugin-react": "*",
-    "eslint-plugin-vue":"*",
-    "eslint-config-elemefe":"*",
-    "babel-eslint":"*",
-    "eslint-config-airbnb":"*",
-    "eslint-plugin-jsx-a11y":"*",
-    "eslint-plugin-import":"*",
-    "gulp-eslint":"*",
-    "gulp": "*",
+    "eslint": "~4.3.0",
+    "eslint-plugin-react": "~7.1.0",
+    "eslint-plugin-vue":"~2.1.0",
+    "eslint-config-elemefe":"~0.3.0",
+    "babel-eslint":"~7.2.3",
+    "eslint-config-airbnb":"~15.1.0",
+    "eslint-plugin-jsx-a11y":"~5.1.1",
+    "eslint-plugin-import":"~2.7.0",
+    "gulp-eslint":"~4.0.0",
+    "gulp": "~3.9.1",
     "cpwcom":"1.0.8",
     "getfiles":"1.1.0",
-    "cfiles":"^1.0.3",
-    "gulp-connect":"*",
-    "gulp-shell": "*",
-    "gulp-less": "*"
+    "cfiles":"~1.0.3",
+    "gulp-connect":"~5.0.0",
+    "gulp-shell": "~0.6.3",
+    "minimatch":"^3.0.2",
+    "gulp-less": "~3.3.2"
   }
 }

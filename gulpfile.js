@@ -68,6 +68,7 @@ class action {
   constructor() {
     this.reg = new RegExp(white.join('|'));
   }
+
   init() {
     var _this = this;
     gulp.task('s', (req, res) => {
@@ -80,10 +81,7 @@ class action {
     });
 
     gulp.task('default', function () {
-      // _this.doPull();
-      // var timer = setInterval(function () {
-        _this.doPull();
-      // }, period);
+      _this.doPull();
     });
     gulp.task('delete', function () {
       fs.unlink('store', err => {
@@ -94,6 +92,7 @@ class action {
       })
     });
   }
+
   doPull() {
     const _this = this;
     store.clear(); // 清空report
@@ -103,10 +102,10 @@ class action {
     Promise.all(project.map(function (item, index) {
       child_process.exec('rm -rf store', (error, stdout, stderr) => {
         let name = item.store.split('/').pop().split('.')[0];
-        item.name=name;// 再命名
+        item.name = name; // 再命名
 
         child_process.exec(`git clone ${item.store} "store/${name}"`, (error, stdout, stderr) => {
-          if(error){
+          if (error) {
             console.log(stdout);
             console.log(`${name} download error,maybe you have not right to clone this project,please to checkout out,this error will be end of this progress。 `);
             return false;
@@ -121,7 +120,6 @@ class action {
             root: `store/${name}`,
             suffix: fileType,
             callback: function (list) {
-              console.log(`${list} \n`);
 
               _this.eslintList(list);
             }
@@ -133,6 +131,7 @@ class action {
 
     })).then();
   }
+
   eslintList(list) {
     const _this = this;
     Promise.all(list.map(file => {
@@ -140,14 +139,19 @@ class action {
         return false;
       } else {
         let filePromise = new Promise((resolve, reject) => {
+
           gulp.src(file).pipe(eslint()).pipe(eslint.format('json', result => {
+
             const pname = file.substring(file.indexOf('store')).split('/')[1]; // 当前eslint的项目名称
             const obj = JSON.parse(result)[0];
             obj.pname = pname; // 为了做异步区分，所以对obj进行了重赋值
             clearTimeout(timer);
             let dir = `result/${pname}/${time}/${file.split('/').join('_')}.json`;
 
+            // cf.create(dir, JSON.stringify(obj));
 
+
+            console.log(`${dir}:${JSON.stringify(obj).length}`);
             cf.create(dir, JSON.stringify(obj));
             resolve(obj);
           }));
@@ -159,11 +163,18 @@ class action {
 
       }
 
-    }));
+    })).catch(()=>{
+
+      console.log('error');
+    });
+
+
   }
+
   createResult(json) {
     store.set(json);
     const allJSON = `result/all.json`;
+    // console.log(json);
     timer = setTimeout(function () {
       clearTimeout(timer);
 
@@ -209,7 +220,6 @@ class action {
 
 const A = new action();
 A.init();
-
 
 
 /*以下为工程测试代码*/
