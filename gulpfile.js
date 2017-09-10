@@ -104,7 +104,7 @@ class action {
         let name = item.store.split('/').pop().split('.')[0];
         item.name = name; // 再命名
 
-        child_process.exec(`git clone ${item.store} "store/${name}"`, (error, stdout, stderr) => {
+        child_process.exec(`git clone ${item.store} ${!!item.branch?"-b "+item.branch:""} "store/${name}"`, (error, stdout, stderr) => {
           if (error) {
             console.log(stdout);
             console.log(`${name} download error,maybe you have not right to clone this project,please to checkout out,this error will be end of this progress。 `);
@@ -163,7 +163,7 @@ class action {
 
       }
 
-    })).catch(()=>{
+    })).catch(() => {
 
       console.log('error');
     });

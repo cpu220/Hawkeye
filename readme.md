@@ -13,10 +13,9 @@
 ### 添加监控项目
 * 打开project.json，根据格式进行添加
 ``` javascript
-{
-  "name":"ant-awards",// 项目名称，随便你爱些什么写什么
-  "store":"git@gitlab.odc.com:test/ant-awards.git",// 仓库地址，用于定时更新代码
-  "url":"store/ant-awards/app"// 扫描路径
+{  
+  "store":"git@gitlab.odc.com:test/ant-awards.git",// 仓库地址,注意，是git仓库地址，用于更新扫描代码源
+  "branch":"store/ant-awards/app"// 扫描分支，如果这个字段为空或不存在，则默认扫描master
 }
 ```
 
@@ -24,6 +23,7 @@
 * whiteList.json
 * 如果工程里有第三方插件或较大的压缩文件想要规避eslint扫描，则需手动对白名单添加
 
+ 
 ### 启动
 ``` javascript
 gulp // 启动扫描
@@ -59,5 +59,8 @@ gulp s // 启动服务器
 ### 2017-08-01
 * 确定了package.json 里插件的版本
 * 添加了部分白名单
+
+### 2017-09-10
+* 添加分支扫描
 
 

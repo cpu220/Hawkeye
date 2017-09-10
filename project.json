@@ -1,3 +1,4 @@
 [{
-  "store":"https://git.coding.net/q25865/test.git"
+  "store":"git@github.com:cpu220/getFiles.git",
+  "branch":"test"
 }]
