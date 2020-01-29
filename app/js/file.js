@@ -32,7 +32,7 @@ class page {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'same-origi'
+      // credentials: 'same-origi'
     }).then(function (response) {
 
       response.text().then(function (responseText) {

@@ -12,5 +12,7 @@
   "qrcode",
   "video",
   "audioplayer",
-  "bce-bos-uploader.bundle"
+  "bce-bos-uploader.bundle",
+  "dist",
+  "mock"
 ]
